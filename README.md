@@ -30,12 +30,13 @@ devcontainer 内では openEMS は次に入ります。
 /workspaces/openEMS/.openems-local
 ```
 
-`PATH`, `LD_LIBRARY_PATH`, `OPENEMS_HOME`, `VIRTUAL_ENV` は devcontainer 側で設定済みです。
+`PATH`, `LD_LIBRARY_PATH`, `OCTAVE_PATH`, `OPENEMS_HOME`, `VIRTUAL_ENV` は devcontainer 側で設定済みです。
 
 確認例:
 
 ```bash
 openEMS --help
+octave --quiet --eval "which physical_constants; which InitCSX"
 python -c "import CSXCAD, openEMS; print(CSXCAD.__file__); print(openEMS.__file__)"
 ```
 

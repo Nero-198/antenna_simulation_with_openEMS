@@ -10,7 +10,8 @@
     "OPENEMS_HOME": "/workspaces/openEMS/.openems-local",
     "VIRTUAL_ENV": "/opt/venv",
     "PATH": "/opt/venv/bin:/workspaces/openEMS/.openems-local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
-    "LD_LIBRARY_PATH": "/workspaces/openEMS/.openems-local/lib"
+    "LD_LIBRARY_PATH": "/workspaces/openEMS/.openems-local/lib",
+    "OCTAVE_PATH": "/workspaces/openEMS/.openems-local/share/openEMS/matlab:/workspaces/openEMS/.openems-local/share/CSXCAD/matlab"
   },
   "customizations": {
     "vscode": {
