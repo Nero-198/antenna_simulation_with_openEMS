@@ -323,7 +323,14 @@ CSXGeomPlot( ...
 end
 
 %% openEMS を実行する
-RunOpenEMS( Sim_Path, Sim_CSX);
+num_threads = str2double(getenv('OPENEMS_NUM_THREADS'));
+if ~isfinite(num_threads) || num_threads < 1 || num_threads ~= floor(num_threads)
+    num_threads = 12;
+end
+openEMS_opts = sprintf( ...
+    '--engine=multithreaded --numThreads=%d', num_threads);
+fprintf('openEMS threads: %d\n', num_threads);
+RunOpenEMS( Sim_Path, Sim_CSX, openEMS_opts);
 
 
 
