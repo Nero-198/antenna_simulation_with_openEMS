@@ -1,0 +1,41 @@
+# Local openEMS installation and external source checkout
+/.openems-local/
+/openEMS-Project/
+
+# Python virtual environments
+/.venv/
+/.py-openems-test-venv/
+
+# VS Code machine-specific settings
+/.vscode/*
+!/.vscode/extensions.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+
+# Octave/MATLAB temporary files
+octave-workspace
+*.asv
+
+# openEMS simulation outputs
+/tmp/
+/proj/connical_horn/results_horn_sweep/
+
+# Common generated field and solver files
+*.vtr
+*.vtk
+*.vtp
+*.h5
+port_ut*
+port_it*
+et
+ht
+nf2ff.xml
+
+# Editor and operating-system files
+*~
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

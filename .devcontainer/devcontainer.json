@@ -1,0 +1,27 @@
+{
+  "name": "openEMS Dev Container",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/workspaces/openEMS",
+  "postCreateCommand": "/bin/bash .devcontainer/post-create.sh",
+  "containerEnv": {
+    "OPENEMS_HOME": "/workspaces/openEMS/.openems-local",
+    "VIRTUAL_ENV": "/opt/venv",
+    "PATH": "/opt/venv/bin:/workspaces/openEMS/.openems-local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+    "LD_LIBRARY_PATH": "/workspaces/openEMS/.openems-local/lib"
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "openai.chatgpt",
+        "ms-vscode.cpptools",
+        "ms-python.python"
+      ]
+    }
+  },
+  "remoteUser": "ubuntu"
+}
