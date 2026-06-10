@@ -3,6 +3,7 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/openEMS,type=bind",
   "workspaceFolder": "/workspaces/openEMS",
   "postCreateCommand": "/bin/bash .devcontainer/post-create.sh",
   "containerEnv": {
