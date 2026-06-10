@@ -1,17 +1,18 @@
 # openEMS devcontainer
 
-VS Code の Dev Containers で openEMS をビルド・実行するための作業用リポジトリです。
+VS Code Docker Dev Containers で openEMS をビルド・実行するための作業用リポジトリ，
+缶型フィーダーの設計のために環境を構成した．
 
 ## 使い方
 
-1. VS Code でこのフォルダを開きます。
+1. VS Code でこのフォルダを開く．
 
    ```bash
    code /home/nero/workspace/openEMS
    ```
 
-2. VS Code のコマンドパレットから `Dev Containers: Reopen in Container` を実行します。
-3. 初回起動時に `.devcontainer/post-create.sh` が `openEMS-Project` をビルドし、成果物を `.openems-local` にインストールします。
+2. VS Code のコマンドパレットから `Dev Containers: Reopen in Container` を実行する．
+3. 初回起動時に `.devcontainer/post-create.sh` が `openEMS-Project` をビルドし、成果物を `.openems-local` にインストールする．
 
 ## devcontainer に入るもの
 
@@ -24,13 +25,13 @@ VS Code の Dev Containers で openEMS をビルド・実行するための作�
 
 ## インストール先
 
-devcontainer 内では openEMS は次に入ります。
+devcontainer 内で openEMS は次に入る．
 
 ```bash
 /workspaces/openEMS/.openems-local
 ```
 
-`PATH`, `LD_LIBRARY_PATH`, `OCTAVE_PATH`, `OPENEMS_HOME`, `VIRTUAL_ENV` は devcontainer 側で設定済みです。
+`PATH`, `LD_LIBRARY_PATH`, `OCTAVE_PATH`, `OPENEMS_HOME`, `VIRTUAL_ENV` は devcontainer 側で設定される．
 
 確認例:
 
@@ -39,16 +40,22 @@ openEMS --help
 octave --quiet --eval "which physical_constants; which InitCSX"
 python -c "import CSXCAD, openEMS; print(CSXCAD.__file__); print(openEMS.__file__)"
 ```
+## 実行例
+環境構築後，以下のようにコマンドを実行すると，openEMSシミュレーションが開始される．
+```bash
+octave proj/connical_horn_antenna.m 
+```
+
 
 ## 再ビルド
 
-通常はインストール済みならスキップします。強制的にビルドし直す場合:
+通常はインストール済みならスキップ。強制的にビルドし直す場合は:
 
 ```bash
 OPENEMS_REBUILD=1 .devcontainer/post-create.sh
 ```
 
-GUI が不要な場合は AppCSXCAD を外せます。
+GUI が不要な場合は AppCSXCAD を外す。
 
 ```bash
 OPENEMS_BUILD_GUI=NO OPENEMS_REBUILD=1 .devcontainer/post-create.sh
@@ -60,7 +67,13 @@ OPENEMS_BUILD_GUI=NO OPENEMS_REBUILD=1 .devcontainer/post-create.sh
 OPENEMS_BUILD_JOBS=2 OPENEMS_REBUILD=1 .devcontainer/post-create.sh
 ```
 
-## Docker なしで動かす場合
+逆に並列数を増やしたい場合:
+
+```bash
+OPENEMS_BUILD_JOBS=12 OPENEMS_REBUILD=1 .devcontainer/post-create.sh
+```
+
+## Docker なしで動かす場合(未検証)
 
 Linux または WSL 上なら Docker なしでも動かせます。ただし、ホスト側に同じ依存関係を直接入れてビルドする必要があります。
 
