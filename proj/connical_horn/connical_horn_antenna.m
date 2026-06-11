@@ -8,9 +8,32 @@ unit = 1e-3; % すべての長さを mm 単位で扱う
 
 %% sweep parameters
 
-radius_list = [75];          % mm
-length_list = [100 120 140 160 180 200];  % mm
-angle_deg_list = [60 70 80 90];  % deg
+radius_list = [75];                 % mm
+length_list = [145 146 147 148 149 150 151 152 153 154 155];        % mm
+angle_deg_list = [16 17 18 19 20 21 22 23 24];        % deg
+
+% 並列実行や追加探索では、空白またはカンマ区切りの環境変数で上書きする。
+radius_list_env = getenv('HORN_RADIUS_LIST');
+length_list_env = getenv('HORN_LENGTH_LIST');
+angle_deg_list_env = getenv('HORN_ANGLE_LIST');
+
+if ~isempty(radius_list_env)
+    radius_list = sscanf(strrep(radius_list_env, ',', ' '), '%f').';
+end
+if ~isempty(length_list_env)
+    length_list = sscanf(strrep(length_list_env, ',', ' '), '%f').';
+end
+if ~isempty(angle_deg_list_env)
+    angle_deg_list = sscanf(strrep(angle_deg_list_env, ',', ' '), '%f').';
+end
+
+assert(~isempty(radius_list) && all(isfinite(radius_list)) && all(radius_list > 0));
+assert(~isempty(length_list) && all(isfinite(length_list)) && all(length_list > 0));
+assert(~isempty(angle_deg_list) && all(isfinite(angle_deg_list)));
+
+fprintf('radius sweep [mm]: %s\n', mat2str(radius_list));
+fprintf('length sweep [mm]: %s\n', mat2str(length_list));
+fprintf('angle sweep [deg]: %s\n', mat2str(angle_deg_list));
 
 feed_length = 200;           % mm
 thickness = 2;               % mm
@@ -25,8 +48,8 @@ save_aperture_time_dump = false;
 % falseなら、FDTDを再実行せずに別角度や3D遠方界を再計算できる。
 delete_nf2ff_surface_h5_after_postprocessing = true;
 
-% 再実行時は case_summary.mat がある完了済み条件を飛ばす。
-skip_completed_cases = true;
+% 今回は既存結果も含め、指定した全条件を再計算する。
+skip_completed_cases = false;
 
 if ~exist(result_root, 'dir')
     mkdir(result_root);

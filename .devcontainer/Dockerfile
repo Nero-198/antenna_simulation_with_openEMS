@@ -11,6 +11,8 @@ RUN apt-get update \
         ca-certificates \
         cmake \
         curl \
+        fontconfig \
+        fonts-freefont-otf \
         git \
         hdf5-tools \
         libboost-all-dev \
